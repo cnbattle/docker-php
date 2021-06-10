@@ -382,50 +382,28 @@ if [[ -z "${EXTENSIONS##*,ssh2,*}" ]]; then
 fi
 
 if [[ -z "${EXTENSIONS##*,protobuf,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 0
-    if [[ "$?" = "1" ]]; then
-        echo "---------- Install protobuf ----------"
-        printf "\n" | pecl install protobuf
-        docker-php-ext-enable protobuf
-    else
-        echo "yar requires PHP >= 7.0.0, installed version is ${PHP_VERSION}"
-    fi
+    echo "---------- Install protobuf ----------"
+    printf "\n" | pecl install protobuf
+    docker-php-ext-enable protobuf
 fi
 
 if [[ -z "${EXTENSIONS##*,yac,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 0
-    if [[ "$?" = "1" ]]; then
-        echo "---------- Install yac ----------"
-        printf "\n" | pecl install yac-2.0.2
-        docker-php-ext-enable yac
-    else
-        echo "yar requires PHP >= 7.0.0, installed version is ${PHP_VERSION}"
-    fi
+    echo "---------- Install yac ----------"
+    printf "\n" | pecl install yac-2.3.0
+    docker-php-ext-enable yac
+   
 fi
 
 if [[ -z "${EXTENSIONS##*,yar,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 0
-    if [[ "$?" = "1" ]]; then
-        echo "---------- Install yar ----------"
-        printf "\n" | pecl install yar
-        docker-php-ext-enable yar
-    else
-        echo "yar requires PHP >= 7.0.0, installed version is ${PHP_VERSION}"
-    fi
-
+    echo "---------- Install yar ----------"
+    printf "\n" | pecl install yar
+    docker-php-ext-enable yar
 fi
 
-
-
 if [[ -z "${EXTENSIONS##*,yaconf,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 0
-    if [[ "$?" = "1" ]]; then
-        echo "---------- Install yaconf ----------"
-        printf "\n" | pecl install yaconf
-        docker-php-ext-enable yaconf
-    else
-        echo "yar requires PHP >= 7.0.0, installed version is ${PHP_VERSION}"
-    fi
+    echo "---------- Install yaconf ----------"
+    printf "\n" | pecl install yaconf
+    docker-php-ext-enable yaconf
 fi
 
 if [[ -z "${EXTENSIONS##*,seaslog,*}" ]]; then
@@ -442,17 +420,12 @@ if [[ -z "${EXTENSIONS##*,varnish,*}" ]]; then
 fi
 
 if [[ -z "${EXTENSIONS##*,pdo_sqlsrv,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 1
-    if [[ "$?" = "1" ]]; then
-        echo "---------- Install pdo_sqlsrv ----------"
-        apk add --no-cache unixodbc-dev
-        printf "\n" | pecl install pdo_sqlsrv
-        docker-php-ext-enable pdo_sqlsrv
-        curl -o /tmp/msodbcsql17_amd64.apk https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.5.2.1-1_amd64.apk
-        apk add --allow-untrusted /tmp/msodbcsql17_amd64.apk
-    else
-        echo "pdo_sqlsrv requires PHP >= 7.1.0, installed version is ${PHP_VERSION}"
-    fi
+    echo "---------- Install pdo_sqlsrv ----------"
+    apk add --no-cache unixodbc-dev
+    printf "\n" | pecl install pdo_sqlsrv
+    docker-php-ext-enable pdo_sqlsrv
+    curl -o /tmp/msodbcsql17_amd64.apk https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.5.2.1-1_amd64.apk
+    apk add --allow-untrusted /tmp/msodbcsql17_amd64.apk
 fi
 
 if [[ -z "${EXTENSIONS##*,sqlsrv,*}" ]]; then
@@ -481,29 +454,28 @@ if [[ -z "${EXTENSIONS##*,mcrypt,*}" ]]; then
     fi
 fi
 
-if [[ -z "${EXTENSIONS##*,mysql,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 0
+# if [[ -z "${EXTENSIONS##*,mysql,*}" ]]; then
+#     isPhpVersionGreaterOrEqual 7 0
+#     if [[ "$?" = "1" ]]; then
+#         echo "---------- mysql was REMOVED from PHP 7.0.0 ----------"
+#     else
+#         echo "---------- Install mysql ----------"
+#         docker-php-ext-install ${MC} mysql
+#     fi
+# fi
 
-    if [[ "$?" = "1" ]]; then
-        echo "---------- mysql was REMOVED from PHP 7.0.0 ----------"
-    else
-        echo "---------- Install mysql ----------"
-        docker-php-ext-install ${MC} mysql
-    fi
-fi
-
-if [[ -z "${EXTENSIONS##*,sodium,*}" ]]; then
-    isPhpVersionGreaterOrEqual 7 2
-    if [[ "$?" = "1" ]]; then
-        echo
-        echo "Sodium is bundled with PHP from PHP 7.2.0"
-        echo
-    else
-        echo "---------- Install sodium ----------"
-        apk add --no-cache libsodium-dev
-        docker-php-ext-install ${MC} sodium
-	fi
-fi
+# if [[ -z "${EXTENSIONS##*,sodium,*}" ]]; then
+#     isPhpVersionGreaterOrEqual 7 2
+#     if [[ "$?" = "1" ]]; then
+#         echo
+#         echo "Sodium is bundled with PHP from PHP 7.2.0"
+#         echo
+#     else
+#         echo "---------- Install sodium ----------"
+#         apk add --no-cache libsodium-dev
+#         docker-php-ext-install ${MC} sodium
+# 	fi
+# fi
 
 if [[ -z "${EXTENSIONS##*,amqp,*}" ]]; then
     echo "---------- Install amqp ----------"
@@ -530,14 +502,7 @@ fi
 if [[ -z "${EXTENSIONS##*,memcached,*}" ]]; then
     echo "---------- Install memcached ----------"
     apk add --no-cache libmemcached-dev zlib-dev
-    isPhpVersionGreaterOrEqual 7 0
-
-    if [[ "$?" = "1" ]]; then
-        printf "\n" | pecl install memcached-3.1.3
-    else
-        printf "\n" | pecl install memcached-2.2.0
-    fi
-
+    printf "\n" | pecl install memcached-3.1.5
     docker-php-ext-enable memcached
 fi
 
@@ -553,18 +518,7 @@ fi
 
 if [[ -z "${EXTENSIONS##*,xdebug,*}" ]]; then
     echo "---------- Install xdebug ----------"
-    isPhpVersionGreaterOrEqual 7 0
-
-    if [[ "$?" = "1" ]]; then
-        isPhpVersionGreaterOrEqual 7 4
-        if [[ "$?" = "1" ]]; then
-            installExtensionFromTgz xdebug-2.9.2
-        else
-            installExtensionFromTgz xdebug-2.6.1
-        fi
-    else
-        installExtensionFromTgz xdebug-2.5.5
-    fi
+    installExtensionFromTgz xdebug-3.0.4
 fi
 
 if [[ -z "${EXTENSIONS##*,event,*}" ]]; then
@@ -583,19 +537,13 @@ fi
 
 if [[ -z "${EXTENSIONS##*,mongodb,*}" ]]; then
     echo "---------- Install mongodb ----------"
-    installExtensionFromTgz mongodb-1.7.4
+    installExtensionFromTgz mongodb-1.9.1
 fi
 
 if [[ -z "${EXTENSIONS##*,yaf,*}" ]]; then
     echo "---------- Install yaf ----------"
-    isPhpVersionGreaterOrEqual 7 0
-
-    if [[ "$?" = "1" ]]; then
-        printf "\n" | pecl install yaf
-        docker-php-ext-enable yaf
-    else
-        installExtensionFromTgz yaf-2.3.5
-    fi
+    printf "\n" | pecl install yaf
+    docker-php-ext-enable yaf
 fi
 
 
