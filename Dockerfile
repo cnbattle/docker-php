@@ -1,6 +1,6 @@
 FROM php:8.0.7-alpine
 
-# ENV TZ Asia/Shanghai
+ENV TZ Asia/Shanghai
 # Available PHP_EXTENSIONS:
 #
 # pdo_mysql,zip,pcntl,mysqli,mbstring,exif,bcmath,calendar,
