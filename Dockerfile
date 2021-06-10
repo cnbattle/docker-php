@@ -12,7 +12,6 @@ ENV TZ Asia/Shanghai
 # amqp,mongodb,event,rar,ast,yac,yar,yaconf,msgpack,igbinary,
 # seaslog,varnish,xhprof,xlswriter,memcache,rdkafka,zookeeper,
 # psr,phalcon,sdebug,ssh2,yaml,protobuf
-
 ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,pcntl
 ENV CONTAINER_PACKAGE_URL mirrors.aliyun.com
 
