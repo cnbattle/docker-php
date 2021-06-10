@@ -1,6 +1,6 @@
 FROM php:8.0.7-alpine
 
-ENV TZ Asia/Shanghai
+# ENV TZ Asia/Shanghai
 # Available PHP_EXTENSIONS:
 #
 # pdo_mysql,zip,pcntl,mysqli,mbstring,exif,bcmath,calendar,
@@ -13,9 +13,9 @@ ENV TZ Asia/Shanghai
 # seaslog,varnish,xhprof,xlswriter,memcache,rdkafka,zookeeper,
 # psr,phalcon,sdebug,ssh2,yaml,protobuf
 ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,pcntl
-ENV CONTAINER_PACKAGE_URL mirrors.aliyun.com
+# ENV CONTAINER_PACKAGE_URL mirrors.aliyun.com
 
-RUN if [ $CONTAINER_PACKAGE_URL ] ; then sed -i "s/dl-cdn.alpinelinux.org/${CONTAINER_PACKAGE_URL}/g" /etc/apk/repositories ; fi
+# RUN if [ $CONTAINER_PACKAGE_URL ] ; then sed -i "s/dl-cdn.alpinelinux.org/${CONTAINER_PACKAGE_URL}/g" /etc/apk/repositories ; fi
 
 COPY ./extensions /tmp/extensions
 WORKDIR /tmp/extensions
@@ -32,11 +32,11 @@ RUN apk --no-cache add tzdata \
     && echo "$TZ" > /etc/timezone
 
 # Fix: https://github.com/docker-library/php/issues/240
-RUN apk add gnu-libiconv libstdc++ --no-cache --repository http://${CONTAINER_PACKAGE_URL}/alpine/edge/community/ --allow-untrusted
+RUN apk add gnu-libiconv libstdc++ --no-cache --allow-untrusted
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 # Install composer and change it's cache home
-RUN curl -o /usr/bin/composer https://mirrors.aliyun.com/composer/composer.phar \
+RUN curl -o /usr/bin/composer https://github.com/composer/composer/releases/download/2.1.3/composer.phar \
     && chmod +x /usr/bin/composer
 ENV COMPOSER_HOME=/tmp/composer
 
