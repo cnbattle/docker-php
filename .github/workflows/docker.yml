@@ -1,4 +1,4 @@
-name: Publish Docker
+name: Publish of Latest
 on: [push]
 jobs:
   build:
@@ -11,4 +11,3 @@ jobs:
         name: cnbattle/docker-php
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        snapshot: true
