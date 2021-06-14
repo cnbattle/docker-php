@@ -12,8 +12,7 @@ ENV TZ Asia/Shanghai
 # amqp,mongodb,event,rar,ast,yac,yar,yaconf,msgpack,igbinary,
 # seaslog,varnish,xhprof,xlswriter,memcache,rdkafka,zookeeper,
 # psr,phalcon,sdebug,ssh2,yaml,protobuf
-# ENV PHP_EXTENSIONS pdo_mysql,zip,pcntl,mysqli,mbstring,exif,bcmath,calendar,sockets,gettext,shmop,sysvmsg,sysvsem,sysvshm,pdo_rebird,pdo_dblib,pdo_oci,pdo_odbc,pdo_pgsql,pgsql,oci8,odbc,dba,gd,intl,bz2,soap,xsl,xmlrpc,wddx,curl,readline,snmp,pspell,recode,tidy,gmp,imap,ldap,imagick,sqlsrv,mcrypt,opcache,redis,memcached,xdebug,swoole,pdo_sqlsrv,sodium,yaf,mysql,amqp,mongodb,event,rar,ast,yac,yar,yaconf,msgpack,igbinary,seaslog,varnish,xhprof,xlswriter,memcache,rdkafka,zookeeper,psr,phalcon,sdebug,ssh2,yaml,protobuf
-ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,pcntl
+ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,pcntl,mongodb
 
 COPY ./extensions /tmp/extensions
 WORKDIR /tmp/extensions
