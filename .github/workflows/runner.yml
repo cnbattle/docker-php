@@ -1,0 +1,20 @@
+name: Publish of Runner
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout master Branch
+      uses: actions/checkout@master
+
+    - name: Get current date
+      id: date
+      run: echo "MY_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+      
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: cnbattle/docker-php
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        tags: "latest,runner,runner-${{ env.MY_DATE }}"
