@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 2 * * *' # at 02:00
+  # schedule:
+  #   - cron: '0 2 * * *' # at 02:00
 jobs:
   build-full:
     runs-on: ubuntu-latest
