@@ -1,4 +1,4 @@
-FROM php:8.0.7-alpine
+FROM php:8.0-alpine
 
 ENV TZ Asia/Shanghai
 ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,mongodb

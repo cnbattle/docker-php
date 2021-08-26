@@ -1,4 +1,4 @@
-FROM php:8.0.7-alpine
+FROM php:8.0-alpine
 
 ENV TZ Asia/Shanghai
 # Available PHP_EXTENSIONS:
