@@ -17,7 +17,7 @@ jobs:
       - name: Checkout master Branch
         uses: actions/checkout@master
       - name: Get current date
-        run: echo "MY_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "MY_DATE=$(date +'%y%m%d')" >> $GITHUB_ENV
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
