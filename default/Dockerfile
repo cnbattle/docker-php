@@ -3,13 +3,13 @@ FROM php:8.0-alpine
 ENV TZ Asia/Shanghai
 ENV PHP_EXTENSIONS pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,zip,swoole,mongodb
 
-COPY ./extensions /tmp/extensions
+COPY ./default/extensions /tmp/extensions
 WORKDIR /tmp/extensions
 RUN chmod +x install.sh \
     && sh install.sh \
     && rm -rf /tmp/extensions
 
-ADD ./extensions/install-php-extensions  /usr/local/bin/
+ADD ./default/extensions/install-php-extensions  /usr/local/bin/
 
 RUN chmod uga+x /usr/local/bin/install-php-extensions
 
