@@ -25,5 +25,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "hyperf,hyperf-${{ env.MY_DATE }}"
-          context: hyperf
-          dockerfile: Dockerfile
+          dockerfile: hyperf/Dockerfile
