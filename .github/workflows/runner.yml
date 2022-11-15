@@ -25,4 +25,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,runner,runner-${{ env.MY_DATE }}"
-          dockerfile: Dockerfile
+          dockerfile: default/Dockerfile

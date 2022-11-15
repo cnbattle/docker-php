@@ -25,4 +25,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "full,full-${{ env.MY_DATE }}"
-          dockerfile: full.Dockerfile
+          dockerfile: default/full.Dockerfile
