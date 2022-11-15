@@ -39,6 +39,7 @@ RUN set -ex \
     && apk add --no-cache $PHPIZE_DEPS  \
     && pecl81 install mongodb \
     && echo "extension=mongodb.so" > /etc/php81/conf.d/mongodb.ini \
+    && apk del $PHPIZE_DEPS  \
     # - config timezone
     && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo "${TIMEZONE}" > /etc/timezone \
