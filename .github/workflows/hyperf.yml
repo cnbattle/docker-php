@@ -11,7 +11,7 @@ on:
   # schedule:
   #   - cron: '0 2 * * *' # at 02:00
 jobs:
-  build-full:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master Branch
